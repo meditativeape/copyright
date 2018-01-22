@@ -8,6 +8,7 @@ py = ['py']
 sh = 'bash csh ksh pl sh tcsh zsh'.split()
 sql = 'sql psql tsql'.split()
 xml = 'htm html php xml'.split()
+r = ['r']
 
 extensions = {
     'c': c,
@@ -16,7 +17,8 @@ extensions = {
     'py': py,
     'sh': sh,
     'sql': sql,
-    'xml': xml
+    'xml': xml,
+    'r': r
 }
 
 class Comments:
@@ -183,11 +185,15 @@ class JavaLang(Lang):
 
 class PyLang(Lang):
     def __init__(self):
-        super(PyLang, self).__init__('py', ['py'],
+        super(PyLang, self).__init__('py', extensions['py'],
             start="'''", stop="'''", single='#',
             keywords=['#!.*python.*', '^from ', '^import .*[^;]$', "^''' ", '^""" '])
 
-
+class RLang(Lang):
+    def __init__(self):
+        super(RLang, self).__init__('r', extensions['r'],
+            start='"', stop='"', single='#',
+            keywords=['#!.*Rscript.*'])
 
 class ShLang(Lang):
     def __init__(self):
@@ -212,7 +218,8 @@ def langs():
         py=PyLang(),
         sh=ShLang(),
         sql=SqlLang(),
-        xml=XmlLang())
+        xml=XmlLang(),
+        r=RLang())
 
 class Detector:
     langs = langs()
