@@ -32,10 +32,11 @@ class LicensedFile:
                 head = text[:i+1].rstrip('\r\n') + sep
                 tail = sep + text[i:].lstrip('\r\n')
 
+            tail = tail.decode('utf8')
             text = ''.join([head, self.lic, tail])
 
         with open(self.file, 'w') as f:
-            f.write(text)
+            f.write(text.encode('utf8'))
 
 # copyright - Add or replace license boilerplate.
 # Copyright (C) 2016 Remik Ziemlinski

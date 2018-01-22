@@ -187,6 +187,8 @@ class PyLang(Lang):
             start="'''", stop="'''", single='#',
             keywords=['#!.*python.*', '^from ', '^import .*[^;]$', "^''' ", '^""" '])
 
+
+
 class ShLang(Lang):
     def __init__(self):
         super(ShLang, self).__init__('sh', extensions['sh'], single='#',
